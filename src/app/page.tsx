@@ -19,6 +19,10 @@ export default function Home() {
   const totalVisitors = data.reduce((sum, item) => sum + item.visitors, 0);
   const totalRevenue = data.reduce((sum, item) => sum + item.revenue, 0);
   const uniqueAgencies = new Set(data.map((item) => item.agency)).size;
+  const totalFlights = data.reduce((sum, item) => sum + item.flights, 0);
+  const totalReservations = data.reduce((sum, item) => sum + item.reservations, 0);
+  const totalTrips = data.reduce((sum, item) => sum + item.trips, 0);
+  const totalCustomers = data.reduce((sum, item) => sum + item.customers, 0);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -35,7 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-6">
       <DashboardHeader />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <KpiCard
           title="Total Visitors"
           value={formatNumber(totalVisitors)}
@@ -50,6 +54,26 @@ export default function Home() {
           title="Active Agencies"
           value={uniqueAgencies.toString()}
           description="Currently reporting data"
+        />
+        <KpiCard
+          title="Total Flights"
+          value={formatNumber(totalFlights)}
+          description="Across all regions"
+        />
+        <KpiCard
+          title="Reservations"
+          value={formatNumber(totalReservations)}
+          description="Total bookings made"
+        />
+        <KpiCard
+          title="Total Trips"
+          value={formatNumber(totalTrips)}
+          description="Completed excursions"
+        />
+        <KpiCard
+          title="Customers"
+          value={formatNumber(totalCustomers)}
+          description="Total unique customers"
         />
       </div>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-7">

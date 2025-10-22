@@ -38,7 +38,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href="/" legacyBehavior passHref>
+            <Link href="/">
               <SidebarMenuButton
                 tooltip="Dashboard"
                 isActive={pathname === '/'}
@@ -55,7 +55,7 @@ export function AppSidebar() {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link href="/agencies" legacyBehavior passHref>
+            <Link href="/agencies">
               <SidebarMenuButton
                 tooltip="Agencies"
                 isActive={pathname === '/agencies'}

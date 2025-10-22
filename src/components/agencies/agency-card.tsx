@@ -7,17 +7,11 @@ import {
   CardTitle,
   CardFooter,
 } from '@/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import type { Agency } from '@/lib/types';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
-import { MoreVertical, Plane, BedDouble, Briefcase, Users } from 'lucide-react';
+import { Plane, BedDouble, Briefcase, Users, ToggleLeft, ToggleRight } from 'lucide-react';
 
 type AgencyCardProps = {
   agency: Agency;
@@ -40,8 +34,10 @@ export function AgencyCard({ agency, onStatusChange }: AgencyCardProps) {
     });
   };
 
+  const isActive = agency.status === 'active';
+
   return (
-    <Card>
+    <Card className="flex flex-col">
       <CardHeader className="flex flex-row items-start justify-between gap-4">
         <div className="flex items-center gap-4">
           <Image src={agency.logo} alt={`${agency.name} logo`} width={48} height={48} />
@@ -50,34 +46,15 @@ export function AgencyCard({ agency, onStatusChange }: AgencyCardProps) {
             <CardDescription className="flex items-center gap-2 mt-1">
               <span
                 className={`h-2 w-2 rounded-full ${
-                  agency.status === 'active' ? 'bg-green-500' : 'bg-red-500'
+                  isActive ? 'bg-green-500' : 'bg-red-500'
                 }`}
               />
-              {agency.status === 'active' ? 'Active' : 'Inactive'}
+              {isActive ? 'Active' : 'Inactive'}
             </CardDescription>
           </div>
         </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-8 w-8">
-              <MoreVertical className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              onClick={() =>
-                onStatusChange(
-                  agency.id,
-                  agency.status === 'active' ? 'inactive' : 'active'
-                )
-              }
-            >
-              {agency.status === 'active' ? 'Deactivate' : 'Activate'}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </CardHeader>
-      <CardContent className="grid gap-4">
+      <CardContent className="grid gap-4 flex-grow">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="grid gap-1">
             <div className="text-muted-foreground">Subscription</div>
@@ -127,6 +104,18 @@ export function AgencyCard({ agency, onStatusChange }: AgencyCardProps) {
             <div className="font-medium text-right">{formatNumber(agency.flights)}</div>
         </div>
       </CardContent>
+      <CardFooter>
+        <Button
+          variant={isActive ? 'destructive' : 'default'}
+          className="w-full"
+          onClick={() =>
+            onStatusChange(agency.id, isActive ? 'inactive' : 'active')
+          }
+        >
+          {isActive ? <ToggleRight /> : <ToggleLeft />}
+          <span>{isActive ? 'Deactivate' : 'Activate'}</span>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

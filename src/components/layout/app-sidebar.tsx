@@ -30,7 +30,7 @@ export function AppSidebar() {
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 p-2">
           <Logo className="w-8 h-8 text-primary" />
-          <span className="text-lg font-semibold font-headline">TourView</span>
+          <span className="text-lg font-semibold font-headline">TicketChamber</span>
         </div>
       </SidebarHeader>
       <SidebarContent>

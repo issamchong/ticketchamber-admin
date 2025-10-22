@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getAiAnalysis, type AnalysisState } from '@/app/actions';
 import type { TourismData } from '@/lib/types';
 import { Button } from '@/components/ui/button';
@@ -30,7 +31,7 @@ function SubmitButton() {
 
 export function AiAnalysis({ data }: { data: TourismData[] }) {
   const initialState: AnalysisState = { data: null, error: null };
-  const [state, formAction] = useFormState(getAiAnalysis, initialState);
+  const [state, formAction] = useActionState(getAiAnalysis, initialState);
   const { toast } = useToast();
 
   useEffect(() => {

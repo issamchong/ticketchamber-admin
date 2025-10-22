@@ -46,7 +46,7 @@ export function DashboardHeader({
       <div className="flex items-center gap-2">
         <SidebarTrigger className="md:hidden" />
         <h1 className="text-2xl font-bold tracking-tight font-headline">
-          Dashboard
+          Analytics
         </h1>
       </div>
       <div className="flex flex-wrap items-center gap-2 sm:gap-4">

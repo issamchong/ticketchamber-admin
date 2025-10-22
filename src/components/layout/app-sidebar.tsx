@@ -11,17 +11,15 @@ import {
 } from '@/components/ui/sidebar';
 import {
   LayoutDashboard,
-  BarChart2,
   Users,
-  Settings,
-  LogOut,
 } from 'lucide-react';
 import { Logo } from '@/components/icons';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Avatar, AvatarFallback } from '../ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { LogOut } from 'lucide-react';
 
 export function AppSidebar() {
   const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
@@ -40,19 +38,13 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <Link href="/">
               <SidebarMenuButton
-                tooltip="Dashboard"
+                tooltip="Analytics"
                 isActive={pathname === '/'}
               >
                 <LayoutDashboard />
-                <span>Dashboard</span>
+                <span>Analytics</span>
               </SidebarMenuButton>
             </Link>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Analytics" disabled>
-              <BarChart2 />
-              <span>Analytics</span>
-            </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <Link href="/agencies">
@@ -64,12 +56,6 @@ export function AppSidebar() {
                 <span>Agencies</span>
               </SidebarMenuButton>
             </Link>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Settings" disabled>
-              <Settings />
-              <span>Settings</span>
-            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>

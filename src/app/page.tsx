@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useMemo } from 'react';
 import { tourismData } from '@/lib/data';
 import type { TourismData } from '@/lib/types';
 import {
@@ -14,13 +17,50 @@ import { MonthlyRevenueChart } from '@/components/dashboard/monthly-revenue-char
 import { TripCategoryChart } from '@/components/dashboard/trip-category-chart';
 
 export default function Home() {
-  const data: TourismData[] = tourismData;
+  const [selectedAgency, setSelectedAgency] = useState('all');
+  const [selectedYear, setSelectedYear] = useState('all');
+  const [selectedMonth, setSelectedMonth] = useState('all');
+
+  const { uniqueYears, uniqueMonths } = useMemo(() => {
+    const years = new Set<string>();
+    const months = new Set<string>();
+    tourismData.forEach((item) => {
+      const date = new Date(item.date);
+      years.add(date.getFullYear().toString());
+      months.add((date.getMonth() + 1).toString().padStart(2, '0'));
+    });
+    const sortedMonths = Array.from(months).sort();
+    return {
+      uniqueYears: Array.from(years).sort((a, b) => Number(b) - Number(a)),
+      uniqueMonths: sortedMonths,
+    };
+  }, []);
+
+  const filteredData = useMemo(() => {
+    return tourismData.filter((item) => {
+      const itemDate = new Date(item.date);
+      const itemYear = itemDate.getFullYear().toString();
+      const itemMonth = (itemDate.getMonth() + 1).toString().padStart(2, '0');
+
+      const agencyMatch =
+        selectedAgency === 'all' || item.agency === selectedAgency;
+      const yearMatch = selectedYear === 'all' || itemYear === selectedYear;
+      const monthMatch = selectedMonth === 'all' || itemMonth === selectedMonth;
+
+      return agencyMatch && yearMatch && monthMatch;
+    });
+  }, [selectedAgency, selectedYear, selectedMonth]);
+
+  const data: TourismData[] = filteredData;
 
   const totalVisitors = data.reduce((sum, item) => sum + item.visitors, 0);
   const totalRevenue = data.reduce((sum, item) => sum + item.revenue, 0);
   const uniqueAgencies = new Set(data.map((item) => item.agency)).size;
   const totalFlights = data.reduce((sum, item) => sum + item.flights, 0);
-  const totalReservations = data.reduce((sum, item) => sum + item.reservations, 0);
+  const totalReservations = data.reduce(
+    (sum, item) => sum + item.reservations,
+    0
+  );
   const totalTrips = data.reduce((sum, item) => sum + item.trips, 0);
   const totalCustomers = data.reduce((sum, item) => sum + item.customers, 0);
 
@@ -38,7 +78,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-6">
-      <DashboardHeader />
+      <DashboardHeader
+        uniqueYears={uniqueYears}
+        uniqueMonths={uniqueMonths}
+        onAgencyChange={setSelectedAgency}
+        onYearChange={setSelectedYear}
+        onMonthChange={setSelectedMonth}
+      />
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <KpiCard
           title="Total Visitors"

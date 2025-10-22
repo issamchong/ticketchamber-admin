@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/card';
 import { DashboardHeader } from '@/components/dashboard/header';
 import { KpiCard } from '@/components/dashboard/kpi-card';
-import { VisitorChart } from '@/components/dashboard/visitor-chart';
 import { AgencyChart } from '@/components/dashboard/agency-chart';
 import { AgencyTable } from '@/components/dashboard/agency-table';
 import { AiAnalysis } from '@/components/dashboard/ai-analysis';
@@ -76,16 +75,8 @@ export default function Home() {
           description="Total unique customers"
         />
       </div>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-7">
-        <Card className="lg:col-span-4">
-          <CardHeader>
-            <CardTitle>Visitor Trends</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <VisitorChart data={data} />
-          </CardContent>
-        </Card>
-        <Card className="lg:col-span-3">
+      <div className="grid grid-cols-1 gap-6">
+        <Card>
           <CardHeader>
             <CardTitle>AI-Powered Analysis</CardTitle>
           </CardHeader>

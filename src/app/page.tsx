@@ -12,6 +12,7 @@ import { AgencyChart } from '@/components/dashboard/agency-chart';
 import { AgencyTable } from '@/components/dashboard/agency-table';
 import { AiAnalysis } from '@/components/dashboard/ai-analysis';
 import { MonthlyRevenueChart } from '@/components/dashboard/monthly-revenue-chart';
+import { TripCategoryChart } from '@/components/dashboard/trip-category-chart';
 
 export default function Home() {
   const data: TourismData[] = tourismData;
@@ -104,13 +105,21 @@ export default function Home() {
           </CardContent>
         </Card>
       </div>
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Monthly Revenue</CardTitle>
           </CardHeader>
           <CardContent>
             <MonthlyRevenueChart data={data} />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Trips by Category</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <TripCategoryChart data={data} />
           </CardContent>
         </Card>
       </div>

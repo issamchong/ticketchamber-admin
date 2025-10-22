@@ -12,6 +12,7 @@ export const tourismData: TourismData[] = [
     reservations: 400,
     trips: 450,
     customers: 1000,
+    tripCategory: 'Cultural',
   },
   {
     agency: 'AdventureSeekers',
@@ -24,6 +25,7 @@ export const tourismData: TourismData[] = [
     reservations: 250,
     trips: 300,
     customers: 700,
+    tripCategory: 'Adventure',
   },
   {
     agency: 'ExploreWorld',
@@ -36,6 +38,7 @@ export const tourismData: TourismData[] = [
     reservations: 450,
     trips: 500,
     customers: 1100,
+    tripCategory: 'City Break',
   },
   {
     agency: 'AdventureSeekers',
@@ -48,6 +51,7 @@ export const tourismData: TourismData[] = [
     reservations: 300,
     trips: 350,
     customers: 800,
+    tripCategory: 'Adventure',
   },
   {
     agency: 'ExploreWorld',
@@ -60,6 +64,7 @@ export const tourismData: TourismData[] = [
     reservations: 500,
     trips: 550,
     customers: 1200,
+    tripCategory: 'Cultural',
   },
   {
     agency: 'AdventureSeekers',
@@ -72,6 +77,7 @@ export const tourismData: TourismData[] = [
     reservations: 350,
     trips: 400,
     customers: 950,
+    tripCategory: 'Cultural',
   },
   {
     agency: 'OceanicGetaways',
@@ -84,6 +90,7 @@ export const tourismData: TourismData[] = [
     reservations: 200,
     trips: 250,
     customers: 500,
+    tripCategory: 'Beach',
   },
   {
     agency: 'ExploreWorld',
@@ -96,6 +103,7 @@ export const tourismData: TourismData[] = [
     reservations: 600,
     trips: 650,
     customers: 1500,
+    tripCategory: 'City Break',
   },
   {
     agency: 'AdventureSeekers',
@@ -108,6 +116,7 @@ export const tourismData: TourismData[] = [
     reservations: 400,
     trips: 450,
     customers: 1000,
+    tripCategory: 'Adventure',
   },
   {
     agency: 'OceanicGetaways',
@@ -120,6 +129,7 @@ export const tourismData: TourismData[] = [
     reservations: 220,
     trips: 270,
     customers: 600,
+    tripCategory: 'Beach',
   },
   {
     agency: 'ExploreWorld',
@@ -132,6 +142,7 @@ export const tourismData: TourismData[] = [
     reservations: 700,
     trips: 750,
     customers: 1800,
+    tripCategory: 'Cultural',
   },
   {
     agency: 'AdventureSeekers',
@@ -144,6 +155,7 @@ export const tourismData: TourismData[] = [
     reservations: 450,
     trips: 500,
     customers: 1100,
+    tripCategory: 'Cultural',
   },
   {
     agency: 'SafariVentures',
@@ -156,6 +168,7 @@ export const tourismData: TourismData[] = [
     reservations: 150,
     trips: 200,
     customers: 400,
+    tripCategory: 'Safari',
   },
   {
     agency: 'ExploreWorld',
@@ -168,5 +181,6 @@ export const tourismData: TourismData[] = [
     reservations: 800,
     trips: 850,
     customers: 2000,
+    tripCategory: 'City Break',
   },
 ];

@@ -9,4 +9,5 @@ export interface TourismData {
   reservations: number;
   trips: number;
   customers: number;
+  tripCategory: 'Cultural' | 'Adventure' | 'Beach' | 'City Break' | 'Safari';
 }

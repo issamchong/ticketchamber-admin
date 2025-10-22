@@ -10,7 +10,6 @@ import { DashboardHeader } from '@/components/dashboard/header';
 import { KpiCard } from '@/components/dashboard/kpi-card';
 import { AgencyChart } from '@/components/dashboard/agency-chart';
 import { AgencyTable } from '@/components/dashboard/agency-table';
-import { AiAnalysis } from '@/components/dashboard/ai-analysis';
 import { MonthlyRevenueChart } from '@/components/dashboard/monthly-revenue-chart';
 import { TripCategoryChart } from '@/components/dashboard/trip-category-chart';
 
@@ -76,16 +75,6 @@ export default function Home() {
           value={formatNumber(totalCustomers)}
           description="Total unique customers"
         />
-      </div>
-      <div className="grid grid-cols-1 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>AI-Powered Analysis</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <AiAnalysis data={data} />
-          </CardContent>
-        </Card>
       </div>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>

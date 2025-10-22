@@ -20,9 +20,12 @@ import { Logo } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function AppSidebar() {
   const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
+  const pathname = usePathname();
 
   return (
     <Sidebar>
@@ -35,25 +38,35 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Dashboard" isActive>
-              <LayoutDashboard />
-              <span>Dashboard</span>
-            </SidebarMenuButton>
+            <Link href="/" legacyBehavior passHref>
+              <SidebarMenuButton
+                tooltip="Dashboard"
+                isActive={pathname === '/'}
+              >
+                <LayoutDashboard />
+                <span>Dashboard</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Analytics">
+            <SidebarMenuButton tooltip="Analytics" disabled>
               <BarChart2 />
               <span>Analytics</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Agencies">
-              <Users />
-              <span>Agencies</span>
-            </SidebarMenuButton>
+            <Link href="/agencies" legacyBehavior passHref>
+              <SidebarMenuButton
+                tooltip="Agencies"
+                isActive={pathname === '/agencies'}
+              >
+                <Users />
+                <span>Agencies</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Settings">
+            <SidebarMenuButton tooltip="Settings" disabled>
               <Settings />
               <span>Settings</span>
             </SidebarMenuButton>

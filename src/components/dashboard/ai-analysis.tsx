@@ -1,13 +1,11 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 import { getAiAnalysis, type AnalysisState } from '@/app/actions';
 import type { TourismData } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Bot, FileText, Loader, TrendingUp } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 function SubmitButton() {

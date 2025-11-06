@@ -14,15 +14,10 @@ import {
   Users,
 } from 'lucide-react';
 import { Logo } from '@/components/icons';
-import { Avatar, AvatarFallback } from '../ui/avatar';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut } from 'lucide-react';
 
 export function AppSidebar() {
-  const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
   const pathname = usePathname();
 
   return (
@@ -59,29 +54,7 @@ export function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border p-2 mt-auto">
-        <div className="flex items-center gap-3 p-2 rounded-md hover:bg-sidebar-accent transition-colors">
-          <Avatar className="h-10 w-10">
-            {userAvatar && (
-              <Image
-                src={userAvatar.imageUrl}
-                alt={userAvatar.description}
-                width={40}
-                height={40}
-                data-ai-hint={userAvatar.imageHint}
-              />
-            )}
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-          <div className="flex-1 overflow-hidden">
-            <p className="font-semibold text-sm truncate">Jane Doe</p>
-            <p className="text-xs text-muted-foreground truncate">
-              jane.doe@example.com
-            </p>
-          </div>
-          <LogOut className="w-5 h-5 text-muted-foreground hover:text-foreground cursor-pointer" />
-        </div>
-      </SidebarFooter>
+      <SidebarFooter className="border-t border-sidebar-border p-2 mt-auto" />
     </Sidebar>
   );
 }

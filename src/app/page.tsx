@@ -115,7 +115,15 @@ export default function Home() {
           description="Total unique customers"
         />
       </div>
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Monthly Revenue</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <MonthlyRevenueChart data={data} />
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader>
             <CardTitle>Revenue by Agency</CardTitle>
@@ -126,14 +134,6 @@ export default function Home() {
         </Card>
       </div>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Monthly Revenue</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <MonthlyRevenueChart data={data} />
-          </CardContent>
-        </Card>
         <Card>
           <CardHeader>
             <CardTitle>Trips by Category</CardTitle>

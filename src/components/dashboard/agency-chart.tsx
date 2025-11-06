@@ -21,10 +21,12 @@ export function AgencyChart({ data }: AgencyChartProps) {
         (agencyRevenue[item.agency] || 0) + item.revenue;
     });
 
-    return Object.entries(agencyRevenue).map(([agency, revenue]) => ({
-      agency,
-      revenue,
-    }));
+    return Object.entries(agencyRevenue)
+      .map(([agency, revenue]) => ({
+        agency,
+        revenue,
+      }))
+      .sort((a, b) => b.revenue - a.revenue);
   }, [data]);
 
   const chartConfig = {
@@ -34,10 +36,16 @@ export function AgencyChart({ data }: AgencyChartProps) {
     },
   };
 
+  const formatCurrency = (value: number) => {
+    if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
+    if (value >= 1000) return `${(value / 1000).toFixed(0)}K`;
+    return value.toString();
+  };
+
   return (
     <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
       <BarChart data={chartData} layout="vertical" margin={{ left: 20 }}>
-        <XAxis type="number" hide />
+        <XAxis type="number" hide tickFormatter={formatCurrency} />
         <YAxis
           dataKey="agency"
           type="category"
@@ -45,10 +53,22 @@ export function AgencyChart({ data }: AgencyChartProps) {
           axisLine={false}
           tickMargin={10}
           width={120}
+          dy={-5}
         />
         <ChartTooltip
           cursor={false}
-          content={<ChartTooltipContent hideLabel />}
+          content={
+            <ChartTooltipContent
+              hideLabel
+              formatter={(value) =>
+                new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                  notation: 'compact',
+                }).format(value as number)
+              }
+            />
+          }
         />
         <Bar dataKey="revenue" fill="var(--color-revenue)" radius={5} />
       </BarChart>

@@ -53,7 +53,6 @@ export default function Home() {
 
   const data: TourismData[] = filteredData;
 
-  const totalVisitors = data.reduce((sum, item) => sum + item.visitors, 0);
   const totalRevenue = data.reduce((sum, item) => sum + item.revenue, 0);
   const uniqueAgencies = new Set(data.map((item) => item.agency)).size;
   const totalFlights = data.reduce((sum, item) => sum + item.flights, 0);
@@ -86,11 +85,6 @@ export default function Home() {
         onMonthChange={setSelectedMonth}
       />
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <KpiCard
-          title="Total Visitors"
-          value={formatNumber(totalVisitors)}
-          description="Across all agencies"
-        />
         <KpiCard
           title="Total Revenue"
           value={formatCurrency(totalRevenue)}

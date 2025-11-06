@@ -12,7 +12,6 @@ import {
 import { DashboardHeader } from '@/components/dashboard/header';
 import { KpiCard } from '@/components/dashboard/kpi-card';
 import { AgencyChart } from '@/components/dashboard/agency-chart';
-import { AgencyTable } from '@/components/dashboard/agency-table';
 import { MonthlyRevenueChart } from '@/components/dashboard/monthly-revenue-chart';
 import { TripCategoryChart } from '@/components/dashboard/trip-category-chart';
 
@@ -116,21 +115,13 @@ export default function Home() {
           description="Total unique customers"
         />
       </div>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Revenue by Agency</CardTitle>
           </CardHeader>
           <CardContent>
             <AgencyChart data={data} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Top Performing Agencies</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <AgencyTable data={data} />
           </CardContent>
         </Card>
       </div>
